@@ -322,7 +322,7 @@ public class Variant: Hashable, Equatable, ExpressibleByStringLiteral, CustomDeb
         }
         var value: UnsafeRawPointer = UnsafeRawPointer(bitPattern: 1)!
         toType(.object, dest: &value)
-        let ret: T? = lookupObject(nativeHandle: value)
+        let ret: T? = objectFromHandle(nativeHandle: value) as? T
         return ret
     }
     
