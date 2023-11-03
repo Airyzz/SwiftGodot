@@ -45,6 +45,7 @@ public struct GodotExport: PeerMacro {
     """
         if let res: \(typeName) = args [0].asObject () {
             \(varName) = res
+            return Variant(\(varName)!)
         }\(optBody)
     """
         } else {
