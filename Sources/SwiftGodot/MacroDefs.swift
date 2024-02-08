@@ -52,7 +52,7 @@ public macro Export(_ hint: PropertyHint = .none, _ hintStr: String? = nil) = #e
 
 // MARK: - Freestanding Macros
 
-/// A macro used to add a category to exported properties
+/// A macro used to add a group to exported properties
 ///
 /// For example:
 /// ```swift
@@ -76,6 +76,31 @@ public macro Export(_ hint: PropertyHint = .none, _ hintStr: String? = nil) = #e
 @freestanding(expression)
 public macro exportGroup(_ name: String, prefix: String = "") = #externalMacro(module: "SwiftGodotMacroLibrary", type: "GodotMacroExportGroup")
 
+/// A macro used to add a subgroup to exported properties
+///
+/// For example:
+/// ```swift
+/// @Godot
+/// class Vehicle: Sprite2D {
+///     #exportGroup("Vehicle")
+///     #exportSubgroup("VIN")
+///     @Export
+///     var vin: String = "0123456789ABCDEF0"
+///     #exportSubgroup("YMM", prefix: "ymms_")
+///     @Export
+///     var ymms_year: Int = 0
+///     @Export
+///     var ymms_make: String = "Make"
+///     @Export
+///     var ymms_model: String = "Model"
+/// }
+/// ```
+///
+/// - Parameter name: The name of the subgroup.
+/// - Parameter prefix: The optional prefix of the subgroup which can be used to only group properties with the specified prefix.
+@freestanding(expression)
+public macro exportSubgroup(_ name: String, prefix: String = "") = #externalMacro(module: "SwiftGodotMacroLibrary", type: "GodotMacroExportSubgroup")
+
 /// A macro used to write an entrypoint for a Godot extension.
 ///
 /// For example, to initialize a Swift extension to Godot with custom types:
@@ -89,7 +114,7 @@ public macro exportGroup(_ name: String, prefix: String = "") = #externalMacro(m
 ///
 /// - Parameter cdecl: The name of the entrypoint exposed to C.
 /// - Parameter types: The node types that should be registered with Godot.
-@freestanding(declaration, names: named(enterExtension), named(setupExtension))
+@freestanding(declaration, names: named(enterExtension))
 public macro initSwiftExtension(cdecl: String,
                                 types: [Wrapped.Type] = []) = #externalMacro(module: "SwiftGodotMacroLibrary",
                                                                         type: "InitSwiftExtensionMacro")
