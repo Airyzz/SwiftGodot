@@ -9,7 +9,7 @@ offset_left = 10.0
 offset_top = 143.0
 offset_right = 205.0
 offset_bottom = 174.0
-text = "Click me to queue sprite"
+text = "Click me to free sprite"
 
 [node name="Spinner" type="Spinner" parent="." node_paths=PackedStringArray("useVariantCheck")]
 path = NodePath("../Sprite2D")
