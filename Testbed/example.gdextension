@@ -8,3 +8,5 @@ compatibility_minimum = 4.2
 
 macos.debug = "res://bin/SimpleExtension"
 macos.release = "res://bin/SimpleExtension"
+linux.debug.x86_64 = "res://../.build/debug/libSimpleExtension.so"
+linux.release.x86_64 = "res://../.build/debug/libSimpleExtension.so"
